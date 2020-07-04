@@ -22,7 +22,9 @@ You can find the training dataset (1.3Go) here: https://repo-sam.inria.fr/fungra
 
 ## Running the network inference
 **First download the trained weights here: https://repo-sam.inria.fr/fungraph/multi_image_materials/supplemental_multi_images/checkpointTrained.zip**
+
 You can then run testModel.sh
+
 To achieve the best results, one of the inputs should have an approximately centered flash image.
 
 ## Bibtex

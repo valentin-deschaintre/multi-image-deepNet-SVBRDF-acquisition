@@ -1,4 +1,4 @@
-# Guided Fine-Tuning for Large-Scale Material Transfer
+# Flexible SVBRDF Capture with a Multi-Image Deep Network
 ![teaser](https://team.inria.fr/graphdeco/files/2019/06/teaser_v0.jpg)
 This repository contains the code for our paper "Flexible SVBRDF Capture with a Multi-Image Deep Network, Valentin Deschaintre, Miika Aittala, Fredo Durand, George Drettakis, Adrien Bousseau. Computer Graphics Forum (Eurographics Symposium on Rendering Conference Proceedings), jul 2019".
 

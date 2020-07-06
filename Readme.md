@@ -14,6 +14,10 @@ This code relies on Tensorflow 1.X but can be adapted to TF 2.X with the followi
 
 It is based on python 3.X, numpy, imageio and opencv for python.
 
+## /!\Material model
+This network is trained to use 256x256 gamma corrected pictures (assumes gamma 2.2, this is set in dataReader.py) and output both the linear and gamma corrected ("gammad", gamma only applies to the albedos) parameters. Higher resolution tend to work less well despite the convolutional nature of the network (see https://team.inria.fr/graphdeco/projects/large-scale-materials/ supplemental materials). 
+
+The model used is the one described in our single image capture paper: https://github.com/valentin-deschaintre/Single-Image-SVBRDF-Capture-rendering-loss (similar to Adobe Substance), **changing the rendering model implementation to render the results will cause strong appearance difference** as different implementations use the parameters differently (despite sharing their names, for example diffuse and specular will be controled for light conservation or roughness will be squared)! 
 
 ## Re-training the network
 To retrain the network, the basic version is to run trainNetwork.sh

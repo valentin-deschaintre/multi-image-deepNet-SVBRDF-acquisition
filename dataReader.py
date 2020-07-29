@@ -41,10 +41,11 @@ class dataset:
     pathBatch = None
     gammaCorrectedInputsBatch = None
     stepsPerEpoch = 0
-
+    
+    mode = "train"
 
     #Some default constructor with most important parameters
-    def __init__(self, inputPath, imageType ="png", trainFolder = "train", testFolder = "test", inputNumbers = 10, maxInputToRead = 1, nbTargetsToRead = 4, cropSize=256, inputImageSize=288, batchSize=1, imageFormat = "png", which_direction = "AtoB", fixCrop = False, mixMaterials = True, fixImageNb = False, logInput = False, useAmbientLight = False, jitterRenderings = False, firstAsGuide = False, useAugmentationInRenderings = True):
+    def __init__(self, inputPath, imageType ="png", trainFolder = "train", testFolder = "test", inputNumbers = 10, maxInputToRead = 1, nbTargetsToRead = 4, cropSize=256, inputImageSize=288, batchSize=1, imageFormat = "png", which_direction = "AtoB", fixCrop = False, mixMaterials = True, fixImageNb = False, logInput = False, useAmbientLight = False, jitterRenderings = False, firstAsGuide = False, useAugmentationInRenderings = True, mode = "train"):
         self.inputPath = inputPath
         self.imageType = imageType
         self.trainFolder = trainFolder
@@ -64,7 +65,8 @@ class dataset:
         self.jitterRenderings = jitterRenderings
         self.firstAsGuide = firstAsGuide
         self.useAugmentationInRenderings = useAugmentationInRenderings
-
+        self.mode = mode
+        
     #Public function to populate the list of path for this dataset
     def loadPathList(self, inputMode, runMode, randomizeOrder):
         if self.inputPath is None or not os.path.exists(self.inputPath):
@@ -102,6 +104,13 @@ class dataset:
 
         with tf.control_dependencies([assertion]):
             floatInput.set_shape([None, None, 3])
+            inputShape = floatInput.get_shape()
+            
+            
+            if self.mode == "eval": #If the inputs are only the number of pictures declared
+                blackTargets = tf.zeros([self.inputImageSize, self.inputImageSize * self.nbTargetsToRead, 3])
+                floatInput = tf.concat([floatInput, blackTargets], axis = 1)
+                
             floatInputSplit = tf.split(floatInput, self.nbTargetsToRead + self.inputNumbers, axis=1, name="Split_input_data") #Splitted we get a list of nbTargets + inputNumbers images
 
         #Sets the inputs and outputs depending on the order of images

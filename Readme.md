@@ -31,6 +31,8 @@ You can then run testModel.sh
 
 To achieve the best results, one of the inputs should have an approximately centered flash image.
 
+To use a single image without the ground truth concatenated to it, use the --mode eval rather than --mode test.
+
 ## Bibtex
 If you use our code, please cite our paper:
 

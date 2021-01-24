@@ -11,7 +11,10 @@ Empowered by deep learning, recent methods for material capture can estimate a s
 
 ## Software requirements
 This code relies on Tensorflow 1.X but can be adapted to TF 2.X with the following compatibility code:
-
+    Replace tensorflow import everywhere by:
+    import tensorflow.compat.v1 as tf
+    tf.disable_v2_behavior()
+    
 It is based on python 3.X, numpy, imageio and opencv for python.
 
 ## /!\Material model

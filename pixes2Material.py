@@ -174,7 +174,7 @@ def main():
             f.write(json.dumps(vars(a), sort_keys=True, indent=4))
 
         #Create a dataset object
-        data = dataReader.dataset(a.input_dir, imageType = a.imageFormat, trainFolder = a.trainFolder, testFolder = a.testFolder, inputNumbers = a.nbInputs, maxInputToRead = maxInputNb, nbTargetsToRead = a.nbTargets, cropSize=CROP_SIZE, inputImageSize=a.input_size, batchSize=a.batch_size, fixCrop = (a.mode == "test"), mixMaterials = (a.mode == "train"), fixImageNb = a.fixImageNb, logInput = a.useLog, useAmbientLight = a.useAmbientLight, jitterRenderings = a.jitterRenderings, firstAsGuide = False, useAugmentationInRenderings = not a.NoAugmentationInRenderings, mode = a.mode)
+        data = dataReader.dataset(a.input_dir, imageFormat = a.imageFormat, trainFolder = a.trainFolder, testFolder = a.testFolder, inputNumbers = a.nbInputs, maxInputToRead = maxInputNb, nbTargetsToRead = a.nbTargets, cropSize=CROP_SIZE, inputImageSize=a.input_size, batchSize=a.batch_size, fixCrop = (a.mode == "test"), mixMaterials = (a.mode == "train"), fixImageNb = a.fixImageNb, logInput = a.useLog, useAmbientLight = a.useAmbientLight, jitterRenderings = a.jitterRenderings, firstAsGuide = False, useAugmentationInRenderings = not a.NoAugmentationInRenderings, mode = a.mode)
 
         # Populate the list of files the dataset will contain
         data.loadPathList(a.inputMode, a.mode, a.mode == "train")
@@ -191,7 +191,7 @@ def main():
         if a.mode == "train":
             with tf.name_scope("recurrentTest"):
                 #Initialize different data for tests.
-                dataTest = dataReader.dataset(a.input_dir, imageType = a.imageFormat, testFolder = a.testFolder, inputNumbers = a.nbInputs, maxInputToRead = a.maxImages, nbTargetsToRead = a.nbTargets, cropSize=CROP_SIZE, inputImageSize=a.input_size, batchSize=a.batch_size, fixCrop = True, mixMaterials = False, fixImageNb = a.fixImageNb, logInput = a.useLog, useAmbientLight = a.useAmbientLight, jitterRenderings = a.jitterRenderings, firstAsGuide = a.firstAsGuide, useAugmentationInRenderings = not a.NoAugmentationInRenderings, mode = a.mode)
+                dataTest = dataReader.dataset(a.input_dir, imageFormat = a.imageFormat, testFolder = a.testFolder, inputNumbers = a.nbInputs, maxInputToRead = a.maxImages, nbTargetsToRead = a.nbTargets, cropSize=CROP_SIZE, inputImageSize=a.input_size, batchSize=a.batch_size, fixCrop = True, mixMaterials = False, fixImageNb = a.fixImageNb, logInput = a.useLog, useAmbientLight = a.useAmbientLight, jitterRenderings = a.jitterRenderings, firstAsGuide = a.firstAsGuide, useAugmentationInRenderings = not a.NoAugmentationInRenderings, mode = a.mode)
                 dataTest.loadPathList(a.inputMode, "test", False)
                 if a.feedMethod == "render":
                     dataTest.populateInNetworkFeedGraph(a.renderingScene, a.jitterLightPos, a.jitterViewPos, True, shuffle = False)

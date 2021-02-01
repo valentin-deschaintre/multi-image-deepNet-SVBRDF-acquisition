@@ -10,7 +10,6 @@ import numpy as np
 
 class dataset:
     inputPath = ""
-    imageType = ""
     trainFolder = "train"
     testFolder = "test"
     pathList  = []
@@ -45,9 +44,8 @@ class dataset:
     mode = "train"
 
     #Some default constructor with most important parameters
-    def __init__(self, inputPath, imageType ="png", trainFolder = "train", testFolder = "test", inputNumbers = 10, maxInputToRead = 1, nbTargetsToRead = 4, cropSize=256, inputImageSize=288, batchSize=1, imageFormat = "png", which_direction = "AtoB", fixCrop = False, mixMaterials = True, fixImageNb = False, logInput = False, useAmbientLight = False, jitterRenderings = False, firstAsGuide = False, useAugmentationInRenderings = True, mode = "train"):
+    def __init__(self, inputPath, trainFolder = "train", testFolder = "test", inputNumbers = 10, maxInputToRead = 1, nbTargetsToRead = 4, cropSize=256, inputImageSize=288, batchSize=1, imageFormat = "png", which_direction = "AtoB", fixCrop = False, mixMaterials = True, fixImageNb = False, logInput = False, useAmbientLight = False, jitterRenderings = False, firstAsGuide = False, useAugmentationInRenderings = True, mode = "train"):
         self.inputPath = inputPath
-        self.imageType = imageType
         self.trainFolder = trainFolder
         self.testFolder = testFolder
         self.inputNumbers = inputNumbers
